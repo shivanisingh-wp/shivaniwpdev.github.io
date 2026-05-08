@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shivani Singh | WordPress Developer & Web Designer</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --dark: #0d0d0d;
+    --accent: #e8c872;
+    --accent2: #c0392b;
+    --light: #f5f0e8;
+    --mid: #1a1a1a;
+    --text: #ccc;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--dark);
+    color: var(--light);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    text-align: center;
+    padding: 60px 20px;
+    background: radial-gradient(ellipse at 60% 40%, #1a1200 0%, #0d0d0d 70%);
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(232,200,114,0.08) 0%, transparent 70%);
+    top: -100px; right: -100px;
+    animation: pulse 6s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.2); opacity: 1; }
+  }
+
+  .hero-content { position: relative; z-index: 1; max-width: 800px; }
+
+  .hero-tag {
+    display: inline-block;
+    background: rgba(232,200,114,0.1);
+    border: 1px solid rgba(232,200,114,0.3);
+    color: var(--accent);
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    animation: fadeUp 0.8s ease forwards;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(48px, 8vw, 96px);
+    font-weight: 900;
+    line-height: 1.05;
+    margin-bottom: 20px;
+    animation: fadeUp 0.8s ease 0.2s forwards;
+    opacity: 0;
+  }
+
+  .hero h1 span { color: var(--accent); }
+
+  .hero p {
+    font-size: 18px;
+    color: var(--text);
+    max-width: 550px;
+    margin: 0 auto 40px;
+    line-height: 1.7;
+    animation: fadeUp 0.8s ease 0.4s forwards;
+    opacity: 0;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: fadeUp 0.8s ease 0.6s forwards;
+    opacity: 0;
+  }
+
+  .btn {
+    padding: 14px 32px;
+    border-radius: 50px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: var(--dark);
+    border: 2px solid var(--accent);
+  }
+
+  .btn-primary:hover { background: transparent; color: var(--accent); }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--light);
+    border: 2px solid rgba(255,255,255,0.2);
+  }
+
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* STATS */
+  .stats {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    padding: 60px 20px;
+    background: var(--mid);
+    flex-wrap: wrap;
+  }
+
+  .stat { text-align: center; }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 52px;
+    font-weight: 900;
+    color: var(--accent);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 13px;
+    color: var(--text);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 8px;
+  }
+
+  /* SKILLS */
+  .section {
+    padding: 100px 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-tag {
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 700;
+    margin-bottom: 60px;
+    line-height: 1.2;
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+  }
+
+  .skill-card {
+    background: var(--mid);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
+    padding: 28px 24px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .skill-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 3px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+  }
+
+  .skill-card:hover::before { transform: scaleX(1); }
+  .skill-card:hover { border-color: rgba(232,200,114,0.2); transform: translateY(-4px); }
+
+  .skill-icon { font-size: 32px; margin-bottom: 16px; }
+  .skill-name { font-size: 16px; font-weight: 500; margin-bottom: 8px; }
+  .skill-level { font-size: 13px; color: var(--accent); }
+
+  /* PROJECTS */
+  .projects-section {
+    background: var(--mid);
+    padding: 100px 20px;
+  }
+
+  .projects-inner { max-width: 1100px; margin: 0 auto; }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 28px;
+  }
+
+  .project-card {
+    background: var(--dark);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.06);
+    transition: all 0.3s ease;
+  }
+
+  .project-card:hover { transform: translateY(-8px); border-color: rgba(232,200,114,0.2); }
+
+  .project-img {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .project-img-1 { background: linear-gradient(135deg, #1a0a0a, #3d1515); }
+  .project-img-2 { background: linear-gradient(135deg, #0a1a0a, #154030); }
+  .project-img-3 { background: linear-gradient(135deg, #0a0a1a, #151540); }
+  .project-img-4 { background: linear-gradient(135deg, #1a1a0a, #403015); }
+  .project-img-5 { background: linear-gradient(135deg, #1a0a1a, #401540); }
+  .project-img-6 { background: linear-gradient(135deg, #0a1a1a, #154040); }
+
+  .project-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(232,200,114,0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .project-card:hover .project-overlay { opacity: 1; }
+
+  .project-info { padding: 24px; }
+
+  .project-type {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+
+  .project-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .project-desc {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+
+  .project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--accent);
+    font-size: 13px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: gap 0.2s;
+  }
+
+  .project-link:hover { gap: 14px; }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .tag {
+    background: rgba(232,200,114,0.1);
+    color: var(--accent);
+    font-size: 11px;
+    padding: 4px 12px;
+    border-radius: 50px;
+    letter-spacing: 1px;
+  }
+
+  /* CONTACT */
+  .contact-section {
+    padding: 100px 20px;
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .contact-card {
+    background: var(--mid);
+    border-radius: 24px;
+    padding: 60px 40px;
+    border: 1px solid rgba(255,255,255,0.06);
+    margin-top: 40px;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    text-align: left;
+  }
+
+  .contact-item:last-child { border-bottom: none; }
+
+  .contact-icon {
+    width: 48px; height: 48px;
+    background: rgba(232,200,114,0.1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+
+  .contact-label { font-size: 12px; color: var(--text); letter-spacing: 1px; text-transform: uppercase; }
+  .contact-value { font-size: 16px; font-weight: 500; margin-top: 4px; }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 40px 20px;
+    background: #080808;
+    color: var(--text);
+    font-size: 14px;
+  }
+
+  footer span { color: var(--accent); }
+
+  /* DIVIDER */
+  .divider {
+    width: 60px;
+    height: 3px;
+    background: var(--accent);
+    margin-bottom: 40px;
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-tag">✦ Available for New Opportunities</div>
+    <h1>Shivani <span>Singh</span></h1>
+    <p>WordPress Developer & Web Designer with 3+ years of experience building responsive, high-performing websites for clients worldwide.</p>
+    <div class="hero-btns">
+      <a href="mailto:shivanisingh9536@gmail.com" class="btn btn-primary">Hire Me</a>
+      <a href="#projects" class="btn btn-outline">View My Work ↓</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat">
+    <div class="stat-num">3+</div>
+    <div class="stat-label">Years Experience</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">100+</div>
+    <div class="stat-label">Websites Worked On</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">7+</div>
+    <div class="stat-label">Live Projects</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">US & UK</div>
+    <div class="stat-label">International Clients</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="section" style="padding-bottom: 0;">
+  <div class="section-tag">About Me</div>
+  <h2 class="section-title">My Journey</h2>
+  <div class="divider"></div>
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
+    <div>
+      <p style="color: var(--text); line-height: 1.9; font-size: 16px; margin-bottom: 20px;">
+        I am a passionate WordPress Developer & Web Designer with <strong style="color: var(--light);">3+ years of professional experience</strong> at SodlanTech Pvt Ltd, Dehradun.
+      </p>
+      <p style="color: var(--text); line-height: 1.9; font-size: 16px; margin-bottom: 20px;">
+        Over my career, I have worked on <strong style="color: var(--accent);">100+ client websites</strong> including businesses based in the <strong style="color: var(--light);">United States and United Kingdom</strong>. I specialize in building responsive, high-performing WordPress websites tailored to each client's needs.
+      </p>
+      <p style="color: var(--text); line-height: 1.9; font-size: 16px;">
+        Most of my projects were developed on a contract basis for international clients — live URLs may vary based on client decisions. Below are 7+ verified live projects from my portfolio.
+      </p>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 16px;">
+      <div style="background: var(--mid); border-radius: 16px; padding: 24px; border: 1px solid rgba(232,200,114,0.1);">
+        <div style="color: var(--accent); font-size: 13px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px;">Current Role</div>
+        <div style="font-size: 16px; font-weight: 500;">Web Developer @ SodlanTech Pvt Ltd</div>
+        <div style="color: var(--text); font-size: 14px; margin-top: 4px;">Feb 2022 – Present · Dehradun, India</div>
+      </div>
+      <div style="background: var(--mid); border-radius: 16px; padding: 24px; border: 1px solid rgba(232,200,114,0.1);">
+        <div style="color: var(--accent); font-size: 13px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px;">Education</div>
+        <div style="font-size: 16px; font-weight: 500;">MCA — Computer Science</div>
+        <div style="color: var(--text); font-size: 14px; margin-top: 4px;">Uttarakhand Technical University · 2018–2020</div>
+      </div>
+      <div style="background: var(--mid); border-radius: 16px; padding: 24px; border: 1px solid rgba(232,200,114,0.1);">
+        <div style="color: var(--accent); font-size: 13px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px;">Availability</div>
+        <div style="font-size: 16px; font-weight: 500;">✅ Open to New Opportunities</div>
+        <div style="color: var(--text); font-size: 14px; margin-top: 4px;">Notice Period: 15 Days or Less</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="section">
+  <div class="section-tag">What I Do</div>
+  <h2 class="section-title">Skills & Expertise</h2>
+  <div class="divider"></div>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-icon">🌐</div>
+      <div class="skill-name">WordPress Development</div>
+      <div class="skill-level">Expert Level</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🎨</div>
+      <div class="skill-name">Elementor & WooCommerce</div>
+      <div class="skill-level">Expert Level</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">💻</div>
+      <div class="skill-name">HTML, CSS, JavaScript</div>
+      <div class="skill-level">Advanced</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">⚙️</div>
+      <div class="skill-name">PHP & Plugin Dev</div>
+      <div class="skill-level">Intermediate</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">📱</div>
+      <div class="skill-name">Responsive Design</div>
+      <div class="skill-level">Expert Level</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🚀</div>
+      <div class="skill-name">SEO & Performance</div>
+      <div class="skill-level">Intermediate</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects-section" id="projects">
+  <div class="projects-inner">
+    <div class="section-tag">My Work</div>
+    <h2 class="section-title">Featured Projects</h2>
+    <div class="divider"></div>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-img project-img-1">
+          🏗️
+          <div class="project-overlay">🔗 View Live</div>
+        </div>
+        <div class="project-info">
+          <div class="project-type">Construction • WordPress</div>
+          <div class="project-name">D&S Contracting LLC</div>
+          <div class="project-tags">
+            <span class="tag">WordPress</span>
+            <span class="tag">Elementor</span>
+            <span class="tag">Responsive</span>
+          </div>
+          <div class="project-desc">Full WordPress website for a North Alabama septic & land clearing company. Custom design with service pages and contact forms.</div>
+          <a href="https://dandscontractingllc.com/" target="_blank" class="project-link">Visit Site →</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-img project-img-2">
+          ❄️
+          <div class="project-overlay">🔗 View Live</div>
+        </div>
+        <div class="project-info">
+          <div class="project-type">HVAC Services • WordPress</div>
+          <div class="project-name">Morgan Air Care LLC</div>
+          <div class="project-tags">
+            <span class="tag">WordPress</span>
+            <span class="tag">Redesign</span>
+            <span class="tag">CSS</span>
+          </div>
+          <div class="project-desc">Website redesign for a Dallas-based HVAC company. Improved UI/UX with modern layout and optimized service pages.</div>
+          <a href="https://www.morgan-air-care-llc.com/" target="_blank" class="project-link">Visit Site →</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-img project-img-3">
+          🚛
+          <div class="project-overlay">🔗 View Live</div>
+        </div>
+        <div class="project-info">
+          <div class="project-type">Transportation • WordPress</div>
+          <div class="project-name">Estera Transportation</div>
+          <div class="project-tags">
+            <span class="tag">WordPress</span>
+            <span class="tag">Service Pages</span>
+            <span class="tag">PHP</span>
+          </div>
+          <div class="project-desc">Custom service pages development and website modifications for a transportation company.</div>
+          <a href="https://esteratransportation.net/" target="_blank" class="project-link">Visit Site →</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-img project-img-4">
+          📋
+          <div class="project-overlay">🔗 View Live</div>
+        </div>
+        <div class="project-info">
+          <div class="project-type">Business Services • WordPress</div>
+          <div class="project-name">Business Profile Care</div>
+          <div class="project-tags">
+            <span class="tag">WordPress</span>
+            <span class="tag">Elementor</span>
+            <span class="tag">SEO</span>
+          </div>
+          <div class="project-desc">Professional website for Google Business Profile support services with clean, modern blue design.</div>
+          <a href="https://businessprofilecare.com/" target="_blank" class="project-link">Visit Site →</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-img project-img-5">
+          📍
+          <div class="project-overlay">🔗 View Live</div>
+        </div>
+        <div class="project-info">
+          <div class="project-type">Digital Services • WordPress</div>
+          <div class="project-name">Web Listing Care</div>
+          <div class="project-tags">
+            <span class="tag">WordPress</span>
+            <span class="tag">Responsive</span>
+            <span class="tag">HTML/CSS</span>
+          </div>
+          <div class="project-desc">Expert Google Business Profile support website with professional design and service showcase.</div>
+          <a href="http://weblistingcare.com/" target="_blank" class="project-link">Visit Site →</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-img project-img-6">
+          🖨️
+          <div class="project-overlay">🔗 View Live</div>
+        </div>
+        <div class="project-info">
+          <div class="project-type">Tech Services • WordPress</div>
+          <div class="project-name">Printer Setup UK</div>
+          <div class="project-tags">
+            <span class="tag">WordPress</span>
+            <span class="tag">WooCommerce</span>
+            <span class="tag">SEO</span>
+          </div>
+          <div class="project-desc">Complete printer support and setup website with product listings and technical support pages.</div>
+          <a href="https://printer-setup.co.uk/" target="_blank" class="project-link">Visit Site →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section">
+  <div class="section-tag">Get In Touch</div>
+  <h2 class="section-title">Let's Work Together</h2>
+  <div class="divider" style="margin: 0 auto 20px;"></div>
+  <p style="color: var(--text); line-height: 1.7;">I'm currently open to new opportunities. Whether you have a project in mind or just want to connect, feel free to reach out!</p>
+
+  <div class="contact-card">
+    <div class="contact-item">
+      <div class="contact-icon">📧</div>
+      <div>
+        <div class="contact-label">Email</div>
+        <div class="contact-value">shivanisingh9536@gmail.com</div>
+      </div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-icon">📱</div>
+      <div>
+        <div class="contact-label">Phone</div>
+        <div class="contact-value">+91 7906659840</div>
+      </div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-icon">📍</div>
+      <div>
+        <div class="contact-label">Location</div>
+        <div class="contact-value">Dehradun, Uttarakhand, India</div>
+      </div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-icon">💼</div>
+      <div>
+        <div class="contact-label">Experience</div>
+        <div class="contact-value">3+ Years | Web Developer at SodlanTech</div>
+      </div>
+    </div>
+  </div>
+
+  <a href="mailto:shivanisingh9536@gmail.com" class="btn btn-primary" style="margin-top: 32px; display: inline-block;">Send Me an Email ✉️</a>
+</section>
+
+<footer>
+  <p>© 2026 <span>Shivani Singh</span> · WordPress Developer & Web Designer · Dehradun, India</p>
+</footer>
+
+</body>
+</html>
